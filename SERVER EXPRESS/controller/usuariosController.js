@@ -1,13 +1,4 @@
-// controllers/usuariosController.js
-const mysql = require('mysql');
-
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'radio_taxis' // Reemplaza 'nombre_de_tu_base_de_datos' con el nombre de tu base de datos
-});
+const pool = require('./db');
 exports.getAllUsuarios = (req, res) => {
     pool.query('SELECT usuarios.id, usuarios.Nombre_usuario, usuarios.Contraseña, usuarios.Rol, usuarios.id_socio, socios.Nombre AS Nombre_socio, socios.CI AS CI_socio, socios.Celular AS Celular_socio, socios.Direccion AS Direccion_socio, socios.Licencia AS Licencia_socio, socios.Placa AS Placa_socio, socios.id_grupo AS id_grupo_socio, choferes.Nombre_completo AS Nombre_chofer, choferes.CI AS CI_chofer, choferes.Celular AS Celular_chofer, choferes.Licencia AS Licencia_chofer, choferes.Placa AS Placa_chofer FROM usuarios LEFT JOIN socios ON usuarios.id_socio = socios.id LEFT JOIN choferes ON usuarios.id_chofer = choferes.id', (error, results) => {
       if (error) {

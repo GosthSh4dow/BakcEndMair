@@ -1,13 +1,4 @@
-const mysql = require('mysql');
-
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'radio_taxis'
-});
-
+const pool = require('./db');
 exports.getAllReportajes = (req, res) => {
   pool.query('SELECT * FROM reportajes', (error, results) => {
     if (error) {

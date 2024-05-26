@@ -1,14 +1,6 @@
 // controllers/choferesController.js
-const mysql = require('mysql');
-
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'radio_taxis'
-});
-
+//const mysql = require('mysql');
+const pool = require('./db');
 exports.getAllChoferes = (req, res) => {
   pool.query('SELECT * FROM choferes', (error, results) => {
     if (error) {

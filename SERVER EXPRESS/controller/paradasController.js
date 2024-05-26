@@ -1,14 +1,4 @@
-const mysql = require('mysql');
-
-// Configuración del pool de conexiones
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'radio_taxis'
-});
-
+const pool = require('./db');
 // Obtener todas las paradas
 exports.getAllParadas = (req, res) => {
   pool.query('SELECT * FROM paradas', (error, results) => {

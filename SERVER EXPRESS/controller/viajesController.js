@@ -1,14 +1,4 @@
-// controllers/viajesController.js
-const mysql = require('mysql');
-
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'radio_taxis'
-});
-
+const pool = require('./db');
 exports.getAllViajes = (req, res) => {
   pool.query('SELECT id, estado, precio, tiempoderecogida, id_chofer, id_reservas FROM viajes', (error, results) => {
     if (error) {

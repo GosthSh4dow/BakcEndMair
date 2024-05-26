@@ -1,14 +1,4 @@
-const mysql = require('mysql');
-//const fs = require('fs');
-
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'radio_taxis'
-});
-
+const pool = require('./db');
 exports.getAllClientes = (req, res) => {
   pool.query('SELECT id, nombre_usuario,contra, nombre, apellido, domicilio FROM clientes', (error, results) => {
     if (error) {

@@ -1,18 +1,10 @@
-
-
-const mysql = require('mysql');
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'radio_taxis'
-});
+const pool = require('./db');
 
 // Obtener todos los socios
 exports.getAllSocios = (req, res) => {
   pool.query('SELECT * FROM socios', (error, results) => {
     if (error) {
+      console.log(results);
       res.status(500).json({ error: 'Error al obtener los socios' });
     } else {
       res.json(results);
